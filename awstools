@@ -1,0 +1,33 @@
+#!/bin/bash -xe
+
+# Enable Debug and Non-0 Exit Code Halt
+
+sudo ./awslzdev_tools.sh -p '3.9.13' -g '2.36.0' -t '1.2.1' -e 'v0.37.1' -o '1.18.2' -y 'v4.2.0'
+
+apt update -y
+
+
+apt install -y unzip libz-dev libssl-dev libcurl4-gnutls-dev libexpat1-dev gettext cmake gcc wget curl
+
+######  Arguements using Flags ########
+while getopts p:g:t:e:o:y: flag
+do
+    case "${flag}" in
+	p) PY_VERSION=${OPTARG} ;;
+	g) GIT_VERSION=${OPTARG} ;;
+	t) TF_VERSION=${OPTARG} ;;
+	e) TG_VERSION=${OPTARG} ;;
+	o) GO_VERSION=${OPTARG} ;;
+	y) YQ_VERSION=${OPTARG} ;;
+    esac
+done
+
+python_version=$PY_VERSION;
+git_version=$GIT_VERSION;
+terraform_version=$TF_VERSION;
+terragrunt_version=$TG_VERSION;
+go_version=$GO_VERSION;
+yq_version=$YQ_VERSION;
+
+
+
